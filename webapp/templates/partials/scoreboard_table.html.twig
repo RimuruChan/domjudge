@@ -30,7 +30,7 @@
 
 <table class="scoreboard center {% if jury %}scoreboard_jury{% endif %}">
 
-    {# output table column groups (for the styles) #}
+    {# 输出表格列组（用于样式） #}
     <colgroup>
         {% if enable_ranking %}
             <col id="scorerank"/>
@@ -67,11 +67,11 @@
     <thead>
     <tr class="scoreheader" data-static="{{ static }}">
         {% if enable_ranking %}
-            <th title="rank" scope="col">rank</th>
+            <th title="排名" scope="col">排名</th>
         {% endif %}
-        <th title="team name" scope="col" colspan="{{ teamColspan }}">team</th>
+        <th title="队伍" scope="col" colspan="{{ teamColspan }}">队伍</th>
         {% if enable_ranking %}
-            <th title="# solved / penalty time" colspan="2" scope="col">score</th>
+            <th title="# 通过 罚时" colspan="2" scope="col">通过 罚时</th>
         {% endif %}
         {% if showTeamSubmissions or jury %}
             {% for problem in problems %}
@@ -90,12 +90,12 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-                <th title="problem {{ problem.problem.name }}" scope="col">
+                <th title="问题 {{ problem.problem.name }}" scope="col">
                     <a {% if link %}href="{{ link }}"{% endif %} target="{{ target }}">
                         {{  problem | problemBadge }}
                         {% if showPoints %}
                             <span class='problempoints'>
-                                [{% if problem.points == 1 %}1 point{% else %}{{ problem.points }} points{% endif %}]
+                                [{% if problem.points == 1 %}1 分{% else %}{{ problem.points }} 分{% endif %}]
                             </span>
                         {% endif %}
                     </a>
@@ -113,7 +113,7 @@
         {% set classes = [] %}
         {% if score.team.category.sortorder != previousSortOrder %}
             {% if previousSortOrder != -1 %}
-                {# Output summary of previous sort order #}
+                {# 输出上一个排序的总结 #}
                 {% include 'partials/scoreboard_summary.html.twig' with {sortOrder: previousSortOrder} %}
             {% endif %}
             {% set classes = classes | merge(['sortorderswitch']) %}
@@ -121,13 +121,13 @@
             {% set previousTeam = null %}
         {% endif %}
 
-        {# process medal color #}
+        {# 处理奖牌颜色 #}
         {% set medalColor = '' %}
         {% if showLegends %}
             {% set medalColor = score.team | medalType(contest, scoreboard) %}
         {% endif %}
 
-        {# check whether this is us, otherwise use category colour #}
+        {# 检查是否为当前队伍，否则使用类别颜色 #}
         {% if myTeamId is defined and myTeamId == score.team.teamid %}
             {% set classes = classes | merge(['scorethisisme']) %}
             {% set color = '#FFFF99' %}
@@ -137,7 +137,7 @@
         <tr class="{{ classes | join(' ') }}" id="team:{{ score.team.teamid }}">
             {% if enable_ranking %}
                 <td class="scorepl {{medalColor}}">
-                    {# Only print rank when score is different from the previous team #}
+                    {# 只有在分数与前一队伍不同的时候才打印排名 #}
                     {% if not displayRank %}
                         ?
                     {% elseif previousTeam is null or scoreboard.scores[previousTeam.teamid].rank != score.rank %}
@@ -295,9 +295,9 @@
                                     {% if matrixItem.isCorrect %}{{ time }}{% else %}&nbsp;{% endif %}
                                     <span>
                                         {% if numSubmissions is same as(1) %}
-                                            1 try
+                                            1 次尝试
                                         {% else %}
-                                            {{ numSubmissions }} tries
+                                            {{ numSubmissions }} 次尝试
                                         {% endif %}
                                     </span>
                                 </div>
@@ -338,7 +338,7 @@
                     {% if jury %}
                         {% set link = path('jury_team_categories') %}
                     {% endif %}
-                    <a {% if link %}href="{{ link }}"{% endif %}>Categories</a>
+                    <a {% if link %}href="{{ link }}"{% endif %}>类别</a>
                 </th>
             </tr>
             </thead>
@@ -360,14 +360,14 @@
 
     {% if showTeamSubmissions or jury %}
         {% if scoreboard.getRuntimeAsScoreTiebreaker() %}
-            {% set cellColors = {first: 'Solved, fastest', correct: 'Solved', incorrect: 'Tried, incorrect', pending: 'Tried, pending', neutral: 'Untried'} %}
+            {% set cellColors = {first: '最优解', correct: '通过', incorrect: '已尝试，未通过', pending: '已尝试，评测中', neutral: '未尝试'} %}
         {% else %}
-            {% set cellColors = {first: 'Solved first', correct: 'Solved', incorrect: 'Tried, incorrect', pending: 'Tried, pending', neutral: 'Untried'} %}
+            {% set cellColors = {first: '首位通过', correct: '通过', incorrect: '已尝试，未通过', pending: '已尝试，评测中', neutral: '未尝试'} %}
         {% endif %}
         <table id="cell_legend" class="scoreboard scorelegend {% if jury %}scoreboard_jury{% endif %}">
             <thead>
             <tr>
-                <th scope="col">Cell colours</th>
+                <th scope="col">单元格颜色</th>
             </tr>
             </thead>
             <tbody>

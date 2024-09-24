@@ -3,20 +3,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    Submit {% if problem is not null %}problem {{ problem.name }}{% endif %}
+                    提交 {% if problem is not null %}题目 {{ problem.name }}{% endif %}
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             {% if current_team_contest is empty or (not is_granted('ROLE_JURY') and not current_team_contest.freezeData.started) %}
                 <div class="modal-body">
-                    <div class="alert alert-danger" role="alert">Contest has not yet started - cannot submit.</div>
+                    <div class="alert alert-danger" role="alert">比赛尚未开始 - 无法提交。</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
                 </div>
             {% elseif not current_team_contest.allowSubmit %}
                 <div class="modal-body">
-                    {% include 'partials/alert.html.twig' with {'type': 'danger', 'message': 'Submissions (temporarily) disabled.'} %}
+                    {% include 'partials/alert.html.twig' with {'type': 'danger', 'message': '提交（暂时）已禁用。'} %}
                 </div>
             {% else %}
                 {{ form_start(form) }}
@@ -28,9 +28,9 @@
                     {{ form_row(form.entry_point) }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
                     <button type="submit" class="btn-success btn">
-                        <i class="fas fa-cloud-upload-alt"></i> Submit
+                        <i class="fas fa-cloud-upload-alt"></i> 提交
                     </button>
                 </div>
                 {{ form_end(form) }}
@@ -64,7 +64,7 @@
                 message += `, last modified ${ago}`;
                 if(!fileValidChars) {
                     className = 'bg-danger';
-                    message += ', invalid filename';
+                    message += ', 非法的文件名——文件名必须为纯英文字母和数字，不能含有空格，如：A.cpp';
                 }
                 if(file.size == 0) {
                     className = 'bg-warning';
@@ -74,7 +74,7 @@
             }
             result = '<ul>' + fileInfoHtml + '</ul>';
             if(!atLeastOneFileRecent) {
-                result += '<div class="alert alert-warning">None of the selected files have been recently modified</div>';
+                result += '<div class="alert alert-warning">所选文件均未最近修改，请确认选择无误</div>';
             }
             filesSelected.html(result);
             filesSelected.removeClass('d-none');

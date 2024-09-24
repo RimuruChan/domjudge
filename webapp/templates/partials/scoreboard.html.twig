@@ -9,7 +9,7 @@
 {% endif %}
 
 {% if current_contest is null %}
-    <p class="nodata">No active contest</p>
+    <p class="nodata">没有正在进行的比赛</p>
 {% else %}
     {% if current_contest.warningMessage %}
         <div class="alert alert-danger" role="alert">
@@ -25,22 +25,22 @@
                     {{ current_contest | printContestStart }}
                 {% elseif scoreboard.freezeData.showFinal(jury) %}
                     {% if current_contest.finalizetime is empty %}
-                        preliminary results - not final
+                        初步结果 - 尚未最终确定
                     {% else %}
-                        final standings
+                        最终排名
                     {% endif %}
                 {% elseif scoreboard.freezeData.stopped %}
-                    contest over, waiting for results
+                    比赛结束，等待结果
                 {% elseif static %}
                     {% set now = 'now'|date('U') %}
                     {{ current_contest.starttime | printelapsedminutes(now) }}
                 {% else %}
                     {% if current_contest.freezeData.started %}
-                        started:
+                        已开始于:
                     {% else %}
-                        starts:
+                        将开始于:
                     {% endif %}
-                    {{ current_contest.starttime | printtime }} - ends: {{ current_contest.endtime | printtime }}
+                    {{ current_contest.starttime | printtime }} - 将结束于: {{ current_contest.endtime | printtime }}
                 {% endif %}
             </span>
         </div>
@@ -96,11 +96,10 @@
         {% if scoreboard.freezeData.showFrozen(false) %}
             <div class="alert alert-warning" role="alert" style="font-size: 80%;">
                 {% if jury %}
-                    <a href="{{ path('public_index') }}">The public scoreboard</a>
-                    was frozen with {{ current_contest.minutesRemaining }} minutes remaining
+                    <a href="{{ path('public_index') }}">公共排行榜</a>
+                    已在比赛结束前 {{ current_contest.minutesRemaining }} 分钟封榜
                 {% else %}
-                    The scoreboard was frozen with {{ current_contest.minutesRemaining }} minutes remaining - solutions
-                    submitted in the last {{ current_contest.minutesRemaining }} minutes of the contest {% if showPending %}are still shown as pending{% else %}are not shown{% endif %}.
+                    排行榜已在比赛结束前 {{ current_contest.minutesRemaining }} 分钟封榜 - 在比赛最后 {{ current_contest.minutesRemaining }} 分钟内提交的解答将{% if showPending %}显示为评测中{% else %}不会显示{% endif %}。
                 {% endif %}
             </div>
         {% endif %}
@@ -114,9 +113,9 @@
                 aria-haspopup="true" aria-expanded="false" id="filter-toggle">
                 <i class="fas fa-filter"></i>
                 {% if scoreFilter.filteredOn is empty %}
-                    Filter
+                    筛选
                 {% else %}
-                    Filtered ({{ scoreFilter.filteredOn }})
+                    已筛选 ({{ scoreFilter.filteredOn }})
                 {% endif %}
             </button>
 
@@ -126,7 +125,7 @@
                         <div class="row mb-3">
                         {% if filterValues.affiliations | length > 1 %}
                             <div class="col">
-                            <label for="scoreboard-filter-affil">Affiliations</label>
+                            <label for="scoreboard-filter-affil">所属机构</label>
                             <select id="scoreboard-filter-affil" class="form-control me-2" multiple size="8" name="affiliations[]">
                                 {% for affiliationId, affiliation in filterValues.affiliations %}
                                     <option {% if affiliationId in scoreFilter.affiliations %}selected{% endif %}
@@ -137,7 +136,7 @@
                         {% endif %}
                         {% if filterValues.countries | length > 1 %}
                             <div class="col">
-                            <label for="scoreboard-filter-country">Countries</label>
+                            <label for="scoreboard-filter-country">国家</label>
                             <select id="scoreboard-filter-country" class="form-control me-2" multiple size="8" name="countries[]">
                                 {% for country in filterValues.countries %}
                                     {% if country is not empty %}
@@ -150,7 +149,7 @@
                         {% endif %}
                         {% if filterValues.categories | length > 1 %}
                             <div class="col">
-                            <label for="scoreboard-filter-category">Categories</label>
+                            <label for="scoreboard-filter-category">类别</label>
                             <select id="scoreboard-filter-category" class="form-control me-2" multiple size="8" name="categories[]">
                                 {% for categoryId, category in filterValues.categories %}
                                     <option {% if categoryId in scoreFilter.categories %}selected{% endif %}
@@ -160,8 +159,8 @@
                             </div>
                         {% endif %}
                         </div>
-                        <input type="submit" class="btn btn-primary btn-sm align-top" name="filter" value="filter"/>
-                        <input type="submit" class="btn btn-secondary btn-sm align-top" name="clear" value="clear"/>
+                        <input type="submit" class="btn btn-primary btn-sm align-top" name="filter" value="筛选"/>
+                        <input type="submit" class="btn btn-secondary btn-sm align-top" name="clear" value="清除"/>
                     </div>
                 </form>
             </div>
@@ -175,7 +174,7 @@
     {% endif %} {# not scoreboard is null and not jury #}
 
     <p id="lastmod">
-        Last Update: {{ null | printtime('D d M Y H:i:s T') }}<br/>
-        using <a href="https://www.domjudge.org/" target="_top">DOMjudge</a>
+        最后更新: {{ null | printtime('D d M Y H:i:s T') }}<br/>
+        使用 <a href="https://www.domjudge.org/" target="_top">DOMjudge</a>
     </p>
 {% endif %}

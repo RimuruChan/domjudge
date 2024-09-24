@@ -37,6 +37,7 @@ class SubmissionService
         'ACCEPTED' => 'CORRECT',
         'WRONG_ANSWER' => 'WRONG-ANSWER',
         'TIME_LIMIT_EXCEEDED' => 'TIMELIMIT',
+        'MEMORY_LIMIT_EXCEEDED' => 'MEMORY-LIMIT',
         'RUN_TIME_ERROR' => 'RUN-ERROR',
         'COMPILER_ERROR' => 'COMPILER-ERROR',
         'NO_OUTPUT' => 'NO-OUTPUT',

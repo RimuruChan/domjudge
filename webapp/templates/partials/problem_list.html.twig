@@ -3,7 +3,7 @@
 {% set contest_problemset_add_cid = contest_problemset_add_cid | default(false) %}
 
 <h1 class="mt-4 text-center">
-    {{ contest.name | default('Contest') }} problems
+    {{ contest.name | default('比赛') }} 题目
     {% if contest and show_contest_problemset and contest.contestProblemsetType is not empty %}
         {% if contest_problemset_add_cid %}
             {% set contest_problemset_url = path(contest_problemset_path, {'cid': contest.cid}) %}
@@ -13,18 +13,18 @@
         <a class="btn btn-secondary" role="button"
            href="{{ contest_problemset_url }}">
             <i class="fas fa-file-{{ contest.contestProblemsetType }}"></i>
-            problemset
+            题目集
         </a>
     {% endif %}
 </h1>
 
 {% if problems is empty %}
-    <div class="alert alert-secondary">No problem texts available at this point.</div>
+    <div class="alert alert-secondary">目前没有题目文本可用。</div>
 {% else %}
     <div class="container">
         {% if show_jury_warning is defined and show_jury_warning %}
             <div class="alert alert-warning">
-                This is a preview of how the page will look like for teams and the public after the contest has started.
+                这是比赛开始后，团队和公众看到的页面预览。
             </div>
         {% endif %}
 
@@ -45,9 +45,9 @@
                                         </h3>
                                         {% if showLimits %}
                                             <h4 class="card-subtitle mb-2 text-muted">
-                                                Limits: {{ problem.problem.timelimit }}
-                                                second
-                                                {%- if problem.problem.timelimit > 1 %}s{% endif %}
+                                                限制: {{ problem.problem.timelimit }}
+                                                秒
+                                                {%- if problem.problem.timelimit > 1 %}{% endif %}
                                                 {%- if timeFactorDiffers -%}
                                                     <sup>*</sup>
                                                 {% endif %}
@@ -76,15 +76,15 @@
                                                                 {% set bucket = (count / maxBucketSize * 9) | round(0, 'ceil') %}
                                                             {% endif %}
                                                             {% if count == 1 %}
-                                                                {% set submissionText = 'submission' %}
+                                                                {% set submissionText = '提交' %}
                                                             {% else %}
-                                                                {% set submissionText = 'submissions' %}
+                                                                {% set submissionText = '提交' %}
                                                             {% endif %}
                                                             {% if not contest.freezeData.showFinal and contest.freezetime and stat.end.timestamp >= contest.freezetime %}
                                                                 {% set maxBucketSize = max(1, stats.maxBucketSizeCorrect, stats.maxBucketSizeIncorrect) %}
                                                                 {% set bucket = (count / maxBucketSize * 9) | round(0, 'ceil') %}
                                                                 {% set itemClass = 'frozen' ~ '-' ~ bucket %}
-                                                                {% set label = count ~ ' ' ~ submissionText ~ ' in freeze' %}
+                                                                {% set label = count ~ ' ' ~ submissionText ~ ' 在冻结中' %}
                                                             {% else %}
                                                                 {% set itemClass = index ~ '-' ~ bucket %}
                                                                 {% set label = count ~ ' ' ~ index ~ ' ' ~ submissionText %}
@@ -94,7 +94,7 @@
                                                                 data-bs-toggle="tooltip"
                                                                 data-placement="top"
                                                                 data-html="true"
-                                                                title="Between {{ stat.start.timestamp | printtime(null, contest) }} and {{ stat.end.timestamp | printtime(null, contest) }}:{{ '\n' }}{{ label }}">
+                                                                title="在 {{ stat.start.timestamp | printtime(null, contest) }} 和 {{ stat.end.timestamp | printtime(null, contest) }} 之间:{{ '\n' }}{{ label }}">
                                                             </div>
                                                         {% endfor %}
                                                     </div>
@@ -110,14 +110,14 @@
                                                 <a class="btn btn-secondary" role="button"
                                                    href="{{ path(problem_statement_path, {'probId': problem.probid}) }}">
                                                     <i class="fas fa-file-{{ problem.problem.problemstatementType }}"></i>
-                                                    statement
+                                                    题目描述
                                                 </a>
                                             {% endif %}
 
                                             {% if numsamples > 0 %}
                                                 <a class="btn btn-secondary" role="button"
                                                    href="{{ path(problem_sample_zip_path, {'probId': problem.probid}) }}">
-                                                    <i class="fas fa-file-archive"></i> samples
+                                                    <i class="fas fa-file-archive"></i> 样例
                                                 </a>
                                             {% endif %}
 
@@ -125,13 +125,13 @@
                                                 {% if is_granted('ROLE_JURY') or (current_team_contest is not null and current_team_contest.freezeData.started) %}
                                                     <a class="justify-content-center" data-ajax-modal data-ajax-modal-after="initSubmitModal" href="{{ path('team_submit', {problem: problem.probid}) }}">
                                                         <span class="btn btn-success">
-                                                            <i class="fas fa-cloud-upload-alt"></i> Submit
+                                                            <i class="fas fa-cloud-upload-alt"></i> 提交
                                                         </span>
                                                     </a>
                                                 {% else %}
                                                     <a class="justify-content-center">
                                                         <span class="btn btn-success disabled" disabled>
-                                                            <i class="fas fa-cloud-upload-alt"></i> Submit
+                                                            <i class="fas fa-cloud-upload-alt"></i> 提交
                                                         </span>
                                                     </a>
                                                 {% endif %}
@@ -162,7 +162,7 @@
             <div class="row">
                 <div class="col-md-12 my-sm-3">
                     <div class=" alert alert-secondary" role="alert">
-                        * language time factors apply
+                        * 部分语言的时间限制会乘以一个常数因子。
                     </div>
                 </div>
             </div>

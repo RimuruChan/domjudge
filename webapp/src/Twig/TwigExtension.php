@@ -913,16 +913,16 @@ JS;
 
     public function printContestStart(Contest $contest): string
     {
-        $res = "scheduled to start ";
+        $res = "计划开始";
         if (!$contest->getStarttimeEnabled()) {
-            $res = "start delayed, was scheduled ";
+            $res = "开始时间推迟，原计划开始";
         }
         if ($this->printtime(Utils::now(), 'Ymd') == $this->printtime($contest->getStarttime(false), 'Ymd')) {
             // Today
-            $res .= "at " . $this->printtime($contest->getStarttime(false));
+            $res .= "于 " . $this->printtime($contest->getStarttime(false));
         } else {
             // Print full date
-            $res .= "on " . $this->printtime($contest->getStarttime(false), 'D d M Y H:i:s T');
+            $res .= "于 " . $this->printtime($contest->getStarttime(false), 'D d M Y H:i:s T');
         }
         return $res;
     }

@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 {% import "jury/jury_macros.twig" as macros %}
 
-{% block title %}Register Account{% endblock %}
+{% block title %}注册账户{% endblock %}
 
 {% block extrahead %}
     {{ parent() }}
@@ -15,15 +15,15 @@
         <img class="mb-4" src="{{ asset('images/DOMjudgelogo.svg') }}" alt="DOMjudge" width="72">
     </div>
         {{ form_start(registration_form, { 'attr': {'class': 'form-signin'} }) }}
-        <h1 class="h3 mb-3 fw-normal">Register Account</h1>
+        <h1 class="h3 mb-3 fw-normal">注册账户</h1>
         <div class="mb-2">
-            Enter the following information to register your account with DOMjudge.
+            输入以下信息以注册您的 DOMjudge 账户。
         </div>
-        {# Form elements will be rendered automatically #}
+        {# 表单元素将自动渲染 #}
         {{ form_end(registration_form) }}
         <div class="mt-3">
-            Already have an account?<br/>
-            <a href="{{ path('login') }}">Login</a>.
+            已有账户？<br/>
+            <a href="{{ path('login') }}">登录</a>。
         </div>
 </main>
 {% endblock %}

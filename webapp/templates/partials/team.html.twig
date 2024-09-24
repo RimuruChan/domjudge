@@ -1,6 +1,6 @@
 {% if team is empty %}
     <div class="alert alert-danger mt-4">
-        No team found by this id.
+        找不到该 ID 的团队。
     </div>
 {% else %}
 
@@ -8,22 +8,22 @@
         <div class="col-lg-{{ size | default(4) }}">
             <table class="table table-sm table-striped">
                 <tr>
-                    <th>Name</th>
+                    <th>名称</th>
                     <td>{{ team.effectiveName }}</td>
                 </tr>
                 <tr>
-                    <th>Category</th>
+                    <th>类别</th>
                     <td>{{ team.category.name }}</td>
                 </tr>
                 {% if team.publicdescription is not empty %}
                     <tr>
-                        <th>Description</th>
+                        <th>描述</th>
                         <td>{{ team.publicdescription | nl2br }}</td>
                     </tr>
                 {% endif %}
                 {% if showAffiliations and team.affiliation is not empty %}
                     <tr>
-                        <th>Affiliation</th>
+                        <th>所属机构</th>
                         <td>
                         {% set affiliationId = team.affiliation.affilid %}
                         {% if showExternalId(team.affiliation) %}
@@ -38,7 +38,7 @@
                     </tr>
                     {% if showFlags and team.affiliation.country is not empty %}
                         <tr>
-                            <th>Country</th>
+                            <th>国家</th>
                             <td>
                                 {{ team.affiliation.country | countryFlag(true) }}
                             </td>
@@ -47,7 +47,7 @@
                 {% endif %}
                 {% if team.location is not empty %}
                     <tr>
-                        <th>Location</th>
+                        <th>位置</th>
                         <td>{{ team.location }}</td>
                     </tr>
                 {% endif %}
@@ -60,8 +60,8 @@
     {% set teamImage = teamId | assetPath('team') %}
     {% if teamImage %}
         <div class="col-lg-{{ size | default(4) }}">
-        <img loading="lazy" class="teampicture" src="{{ asset(teamImage) }}" alt="Picture of team {{ team.effectiveName }}"
-             title="Picture of team {{ team.effectiveName }}">
+        <img loading="lazy" class="teampicture" src="{{ asset(teamImage) }}" alt="队伍 {{ team.effectiveName }} 的相片"
+             title="队伍 {{ team.effectiveName }} 的相片">
         </div>
     {% endif %}
     </div>

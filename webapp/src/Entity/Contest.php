@@ -1355,12 +1355,12 @@ class Contest extends BaseApiEntity implements AssetEntityInterface
         $now = Utils::now();
         if (Utils::difftime((float)$this->getActivatetime(), $now) <= 0) {
             if (!$this->getStarttimeEnabled()) {
-                return 'start delayed';
+                return '开始时间推迟';
             }
             if ($this->isTimeInContest($now)) {
                 return Utils::printtimediff($now, (float)$this->getEndtime());
             } elseif (Utils::difftime((float)$this->getStarttime(), $now) >= 0) {
-                return 'time to start: ' . Utils::printtimediff($now, (float)$this->getStarttime());
+                return '开始倒计时: ' . Utils::printtimediff($now, (float)$this->getStarttime());
             }
         }
 
