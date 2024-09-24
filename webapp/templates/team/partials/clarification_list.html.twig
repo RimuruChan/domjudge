@@ -2,11 +2,11 @@
     <table class="data-table table table-striped table-hover table-sm" style="width:100%;">
         <thead class="thead-light">
         <tr>
-            <th scope="col">time</th>
-            <th scope="col">from</th>
-            <th scope="col">to</th>
-            <th scope="col">subject</th>
-            <th scope="col">text</th>
+            <th scope="col">时间</th>
+            <th scope="col">来自</th>
+            <th scope="col">至</th>
+            <th scope="col">主题</th>
+            <th scope="col">内容</th>
         </tr>
         </thead>
         <tbody>
@@ -20,14 +20,14 @@
                     </a>
                 </td>
                 {%- if clarification.sender is null %}
-                    {%- set sender = 'Jury' %}
+                    {%- set sender = '裁判' %}
                     {%- if clarification.recipient is null %}
-                        {%- set recipient = 'All' %}
+                        {%- set recipient = '所有队伍' %}
                     {%- else %}
                         {%- set recipient = clarification.recipient.effectiveName %}
                     {%- endif %}
                 {%- else %}
-                    {%- set recipient = 'Jury' %}
+                    {%- set recipient = '裁判' %}
                     {%- set sender = clarification.sender.effectiveName %}
                 {%- endif %}
 
@@ -44,7 +44,7 @@
                 <td>
                     <a data-ajax-modal data-ajax-modal-after="markSeen" href="{{ link }}">
                         {%- if clarification.problem -%}
-                            problem {{ clarification.contestProblem | problemBadge -}}
+                            题目 {{ clarification.contestProblem | problemBadge -}}
                         {%- elseif clarification.category -%}
                             {{- categories[clarification.category]|default('general') -}}
                         {%- else -%}

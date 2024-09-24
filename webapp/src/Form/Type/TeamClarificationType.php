@@ -21,7 +21,8 @@ class TeamClarificationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('recipient', TextType::class, [
-            'data' => 'Jury',
+            'data' => '裁判',
+            'label' => '发送至',
             'disabled' => true,
         ]);
 
@@ -48,12 +49,14 @@ class TeamClarificationType extends AbstractType
 
         $builder->add('subject', ChoiceType::class, [
             'choices' => $subjects,
+            'label' => '主题',
         ]);
         $builder->add('message', TextareaType::class, [
             'attr' => [
                 'rows' => 5,
                 'cols' => 85,
             ],
+            'label' => '信息',
         ]);
     }
 }

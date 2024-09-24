@@ -91,6 +91,7 @@ set colors = {
   'correct':        '#01df01',
   'wrong-answer':   'red',
   'timelimit':      'orange',
+  'memory-limit':   '#db91ff',
   'run-error':      '#ff3399',
   'compiler-error': 'grey',
   'no-output':      'purple',
@@ -222,7 +223,7 @@ $(function(){
     // y axis is # of submissions
 
     var submission_stats = [
-      {% for result in ['correct', 'wrong-answer', 'timelimit', 'run-error', 'compiler-error', 'no-output'] %}
+      {% for result in ['correct', 'wrong-answer', 'timelimit', 'memory-limit', 'run-error', 'compiler-error', 'no-output'] %}
       {
         key: "{{result}}",
         color: "{{colors[result]}}",

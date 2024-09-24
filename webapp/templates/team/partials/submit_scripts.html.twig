@@ -140,14 +140,14 @@
             }
             var extrafiles = '';
             if (auxfileno > 0) {
-                extrafiles = "Additional source files: " + auxfileno + '\n';
+                extrafiles = "附加源文件: " + auxfileno + '\n';
             }
             var question =
-                'Main source file: ' + filename + '\n' +
+                '主源文件: ' + filename + '\n' +
                 extrafiles + '\n' +
-                'Problem: ' + problemtxt + '\n' +
-                'Language: ' + languagetxt + '\n' +
-                '\nMake submission?';
+                '问题: ' + problemtxt + '\n' +
+                '语言: ' + languagetxt + '\n' +
+                '\n是否提交？';
             return confirm(question);
         });
 

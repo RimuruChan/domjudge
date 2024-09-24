@@ -1,10 +1,10 @@
 {% if contest is empty %}
-    <h1 id="teamwelcome" class="text-center">Welcome team <span id="teamwelcometeam">{{ team.effectiveName }}</span>!</h1>
-    <h2 id="contestnotstarted" class="text-center">There's no active contest for you (yet).</h2>
+    <h1 id="teamwelcome" class="text-center">欢迎团队 <span id="teamwelcometeam">{{ team.effectiveName }}</span>!</h1>
+    <h2 id="contestnotstarted" class="text-center">您尚无正在进行的比赛。</h2>
 {% elseif not contest.freezeData.started %}
-    <h1 id="teamwelcome" class="text-center">Welcome team <span id="teamwelcometeam">{{ team.effectiveName }}</span>!</h1>
+    <h1 id="teamwelcome" class="text-center">欢迎团队 <span id="teamwelcometeam">{{ team.effectiveName }}</span>!</h1>
     <h2 id="contestnotstarted" class="text-center">
-        Contest {{ contest | printContestStart }}
+        比赛{{ contest | printContestStart }}
     </h2>
 {% else %}
 
@@ -16,34 +16,34 @@
     <div class="mt-4" data-flash-messages>
         {% include 'partials/messages.html.twig' %}
         {% if not contest.allowSubmit %}
-            {% include 'partials/alert.html.twig' with {'type': 'danger', 'message': 'Submissions (temporarily) disabled.'} %}
+            {% include 'partials/alert.html.twig' with {'type': 'danger', 'message': '提交（暂时）禁用。'} %}
         {% endif %}
     </div>
 
     <div class="row">
         <div class="col">
-            <h1 class="teamoverview">Submissions</h1>
+            <h1 class="teamoverview">提交</h1>
 
             {% include 'team/partials/submission_list.html.twig' %}
         </div>
         <div class="col">
-            <h1 class="teamoverview">Clarifications</h1>
+            <h1 class="teamoverview">解释</h1>
             {% if clarifications is empty %}
-                <p class="nodata">No clarifications.</p>
+                <p class="nodata">没有解释。</p>
             {% else %}
                 {% include 'team/partials/clarification_list.html.twig' with {clarifications: clarifications} %}
             {% endif %}
 
-            <h1 class="teamoverview">Clarification Requests</h1>
+            <h1 class="teamoverview">解释请求</h1>
             {% if clarificationRequests is empty %}
-                <p class="nodata">No clarification request.</p>
+                <p class="nodata">没有解释请求。</p>
             {% else %}
                 {% include 'team/partials/clarification_list.html.twig' with {clarifications: clarificationRequests} %}
             {% endif %}
 
             <div class="m-1">
                 <a href="{{ path('team_clarification_add') }}" class="btn btn-secondary btn-sm" data-ajax-modal data-ajax-modal-after="initModalClarificationPreviewAdd">
-                    request clarification
+                    提交解释请求
                 </a>
             </div>
         </div>

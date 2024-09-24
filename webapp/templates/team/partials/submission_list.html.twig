@@ -2,17 +2,17 @@
 {# @var submission \App\Entity\Submission #}
 
 {% if submissions is empty %}
-    <div class="alert alert-warning">No submissions</div>
+    <div class="alert alert-warning">没有提交记录</div>
 {% else %}
     <table class="data-table table table-hover table-striped table-sm submissions-table">
         <thead class="thead-light">
         <tr>
-            <th scope="col">time</th>
-            <th scope="col">problem</th>
-            <th scope="col">lang</th>
-            <th scope="col">result</th>
+            <th scope="col">时间</th>
+            <th scope="col">题目</th>
+            <th scope="col">语言</th>
+            <th scope="col">结果</th>
             {% if contest.getRuntimeAsScoreTiebreaker() %}
-                <th scope="col">runtime</th>
+                <th scope="col">运行时间</th>
             {% endif %}
             {% if allowDownload %}
                 <th scope="col"></th>
@@ -51,8 +51,8 @@
                 </td>
                 <td>
                     <a data-ajax-modal data-ajax-modal-after="markSeen" {% if link %}href="{{ link }}"{% endif %}>
-                        {%- if submission.submittime > submission.contest.endtime %}
-                            {{ 'too-late' | printResult }} 
+                        {%- if submission.submittime > submission.contest.endtime %} 
+                            {{ '比赛已结束' | printResult }} 
                         {%- endif %}
                         {%- if submission.submittime <= submission.contest.endtime or showTooLateResult %}
                             {%- if submission.submittime > submission.contest.endtime %}
@@ -81,7 +81,7 @@
         {% endif %}
         {% if allowDownload %}
                 <td>
-                    <a title="Download submission ZIP" aria-label="download submission zip" class="btn btn-light" href="{{ path('team_submission_download', {'submitId': submission.submitid}) }}">
+                    <a title="下载提交 ZIP" aria-label="下载提交 ZIP" class="btn btn-light" href="{{ path('team_submission_download', {'submitId': submission.submitid}) }}">
                         <i class="fa fa-file-archive"></i>
                     </a>
                 </td>

@@ -5,7 +5,7 @@
     {% set now = 'now'|date('U') %}
     <span id="timeleft">
         {%- if contest is null -%}
-          no contest
+          无比赛
         {%- else -%}
             {{ contest.countdownString }}
         {%- endif -%}

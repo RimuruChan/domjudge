@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <a class="navbar-brand hidden-sm-down" href="{{ path('public_index') }}">DOMjudge</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuDefault"
-            aria-controls="menuDefault" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="menuDefault" aria-expanded="false" aria-label="切换导航">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -12,30 +12,30 @@
         <ul class="navbar-nav me-auto">
             <li class="nav-item">
                 <a class="nav-link{% if current_route in ['public_index', 'public_team'] %} active{% endif %}"
-                    href="{{ path('public_index') }}"><i class="fas fa-list-ol"></i> Scoreboard</a>
+                    href="{{ path('public_index') }}"><i class="fas fa-list-ol"></i> 排行榜</a>
             </li>
             <li class="nav-item">
                 {% if is_granted('ROLE_JURY') or (current_public_contest is not null and current_public_contest.freezeData.started) %}
                     <a class="nav-link{% if current_route == 'public_problems' %} active{% endif %}"
                         href="{{ path('public_problems') }}">
-                        <i class="fas fa-book-open"></i> Problemset
+                        <i class="fas fa-book-open"></i> 题目集
                     </a>
                 {% else %}
-                    <a class="nav-link disabled"><i class="fas fa-book-open"></i> Problemset</a>
+                    <a class="nav-link disabled"><i class="fas fa-book-open"></i> 题目集</a>
                 {% endif %}
             </li>
 
             {% if is_granted('ROLE_TEAM') %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('team_index') }}">
-                        <i class="fas fa-arrow-right"></i> Team
+                        <i class="fas fa-arrow-right"></i> 队伍
                     </a>
                 </li>
             {% endif %}
 
             {% if is_granted('ROLE_JURY') or is_granted('ROLE_BALLOON') %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('jury_index') }}"><i class="fas fa-arrow-right"></i> Jury</a>
+                    <a class="nav-link" href="{{ path('jury_index') }}"><i class="fas fa-arrow-right"></i> 裁判</a>
                 </li>
             {% endif %}
         </ul>
