@@ -35,7 +35,7 @@ class SubmitProblemType extends AbstractType
         $contest            = $this->dj->getCurrentContest($user->getTeam()->getTeamid());
 
         $builder->add('code', FileType::class, [
-            'label' => 'Source file' . ($allowMultipleFiles ? 's' : ''),
+            'label' => '源代码文件' . ($allowMultipleFiles ? '（可多选）' : ''),
             'multiple' => $allowMultipleFiles,
         ]);
 
@@ -50,7 +50,8 @@ class SubmitProblemType extends AbstractType
             'choice_label' => fn(Problem $problem) => sprintf(
                 '%s - %s', $problem->getContestProblems()->first()->getShortName(), $problem->getName()
             ),
-            'placeholder' => 'Select a problem',
+            'placeholder' => '选择题目',
+            'label' => '题目',
         ];
         $builder->add('problem', EntityType::class, $problemConfig);
 
@@ -59,13 +60,14 @@ class SubmitProblemType extends AbstractType
             'class' => Language::class,
             'choices' => $languages,
             'choice_label' => 'name',
-            'placeholder' => 'Select a language',
+            'placeholder' => '选择语言',
+            'label' => '语言',
         ]);
 
         $builder->add('entry_point', TextType::class, [
-            'label' => 'Entry point',
+            'label' => '程序入口',
             'required' => false,
-            'help' => 'The entry point for your code.',
+            'help' => '你的程序的入口点',
             'row_attr' => ['data-entry-point' => ''],
             'constraints' => [
                 new Callback(function ($value, ExecutionContextInterface $context) {
@@ -74,8 +76,8 @@ class SubmitProblemType extends AbstractType
                     /** @var Language $language */
                     $language = $form->get('language')->getData();
                     if ($language->getRequireEntryPoint() && empty($value)) {
-                        $message = sprintf('%s required, but not specified',
-                                           $language->getEntryPointDescription() ?: 'Entry point');
+                        $message = sprintf('需要 %s 但是没有提供',
+                                           $language->getEntryPointDescription() ?: '入口点');
                         $context
                             ->buildViolation($message)
                             ->atPath('entry_point')

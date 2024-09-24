@@ -2,13 +2,13 @@
     <div class="card-header">
         <div class="row">
             <div class="col-sm">
-                Subject:
+                主题：
                 {% if clarification.problem %}
-                    Problem {{ clarification.contestProblem.shortname }}: {{ clarification.problem.name }}
+                    问题 {{ clarification.contestProblem.shortname }}: {{ clarification.problem.name }}
                 {% elseif clarification.category %}
-                    {{ categories[clarification.category]|default('general') }}
+                    {{ categories[clarification.category]|default('一般问题') }}
                 {% else %}
-                    General issue
+                    一般问题
                 {% endif %}
             </div>
             <div class="col-sm text-muted text-end">{{ clarification.submittime | printtimeHover(clarification.contest) }}</div>
@@ -18,20 +18,20 @@
         <div class="card-title">
             <div class="row">
                 <div class="col-sm">
-                    From:
+                    来自：
                     {% if clarification.sender is not empty %}
                         {{ clarification.sender.effectiveName }} (t{{ clarification.sender.teamid }})
                     {% else %}
-                        Jury
+                        裁判
                     {% endif %}
                 </div>
-                <div class="col-sm">To:
+                <div class="col-sm">至：
                     {% if clarification.recipient is not empty %}
                         {{ clarification.recipient.effectiveName }} (t{{ clarification.recipient.teamid }})
                     {% elseif clarification.sender is not null %}
-                        Jury
+                        裁判
                     {% else %}
-                        <strong>All</strong>
+                        <strong>所有队伍</strong>
                     {% endif %}
                 </div>
             </div>

@@ -13,12 +13,12 @@
         $(function () {
             var $body = $('body');
             $body.on('submit', 'form[name=team_clarification]', function () {
-                return confirm("Send clarification request to Jury?");
+                return confirm("是否将解释请求发送给裁判？");
             });
 
             window.replaceClarificationReplyButton = function() {
                 var $replyButton = $('#clarification-reply-button');
-                var $submitButton = $('<button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-envelope"></i> Send</button>');
+                var $submitButton = $('<button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-envelope"></i> 发送</button>');
                 $replyButton.replaceWith($submitButton);
 
                 $submitButton.on('click', function() {
@@ -33,7 +33,7 @@
                 replaceClarificationReplyButton();
             });
 
-            /* Show the notification options if the browser supports it */
+            /* 如果浏览器支持，则显示通知选项 */
             if ('Notification' in window) {
                 $('#notify_disable').click(disableNotifications);
                 $('#notify_enable').click(enableNotifications);

@@ -2,9 +2,9 @@
 
 {% block title %}
 {% if clarification.sender and clarification.sender.teamid == team.teamid %}
-Clarification Request
+解释请求
 {% else %}
-View clarification
+查看解释
 {% endif %}
 {% endblock %}
 
@@ -14,6 +14,6 @@ View clarification
 {% block extraButton %}
         <button class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapsereplyform"
                 aria-expanded="false" aria-controls="collapsereplyform" id="clarification-reply-button">
-            <i class="fa fa-reply"></i> reply to this clarification
+            <i class="fa fa-reply"></i> 回复此解释
         </button>
 {% endblock %}

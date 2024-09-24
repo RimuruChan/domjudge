@@ -1,6 +1,6 @@
 {% extends "team/base.html.twig" %}
 
-{% block title %}Contest problems {{ current_team_contest.shortname | default('') }} - {{ parent() }}{% endblock %}
+{% block title %}比赛题目 {{ current_team_contest.shortname | default('') }} - {{ parent() }}{% endblock %}
 
 {% block content %}
     {% include 'partials/problem_list.html.twig' with {

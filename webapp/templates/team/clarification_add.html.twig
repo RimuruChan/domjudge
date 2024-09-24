@@ -1,11 +1,11 @@
 {% extends 'team/base.html.twig' %}
 
-{% block title %}Send clarification request - {{ parent() }}{% endblock %}
+{% block title %}发送解释请求 - {{ parent() }}{% endblock %}
 
 {% block content %}
     <div class="mt-3 container">
         <div class="card card-body clarificationform">
-            <h1 class="text-center">Send Clarification Request</h1>
+            <h1 class="text-center">发送解释请求</h1>
 
             {{ form_start(form) }}
             {{ form_row(form.recipient) }}
@@ -14,14 +14,14 @@
             <div class="mb-3">
                 <div class="card">
                     <div class="card-body">
-                        <label class="rendered-preview-badge">rendered preview</label>
-                        <div id="messagepreview">Start typing to see a preview of your message</div>
+                        <label class="rendered-preview-badge">渲染预览</label>
+                        <div id="messagepreview">开始输入以查看消息预览</div>
                     </div>
                 </div>
             </div>
             <div>
                 <button type="submit" name="submit" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i> Send
+                    <i class="fas fa-envelope"></i> 发送
                 </button>
             </div>
             {{ form_end(form) }}

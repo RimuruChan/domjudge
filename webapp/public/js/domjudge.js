@@ -3,23 +3,23 @@
 function enableNotifications()
 {
     if ( !('Notification' in window) ) {
-        alert('Your browser does not support desktop notifications.');
+        alert('你的浏览器不支持桌面通知。');
         return false;
     }
     if ( !('localStorage' in window) || window.localStorage===null ) {
-        alert('Your browser does not support local storage;\n'+
-              'this is required to keep track of sent notifications.');
+        alert('你的浏览器不支持 local storage;\n'+
+              '而这被用于跟踪已发送的通知。');
         return false;
     }
     // Ask user (via browser) for permission if not already granted.
     if ( Notification.permission==='denied' ) {
-        alert('Browser denied permission to send desktop notifications.\n' +
-              'Re-enable notification permission in the browser and retry.');
+        alert('浏览器拒绝了发送桌面通知的权限。\n' +
+              '请在浏览器中重新启用通知权限并重试。');
         return false;
     }
     if ( Notification.permission==='granted' ) {
         setCookie('domjudge_notify', 1);
-        sendNotification('DOMjudge notifications enabled.');
+        sendNotification('DOMjudge 通知已启用。');
         $("#notify_disable").removeClass('d-none');
         $("#notify_disable").show();
         $("#notify_enable").hide();
@@ -33,11 +33,11 @@ function enableNotifications()
                 Notification.permission = permission;
             }
             if ( Notification.permission!=='granted' ) {
-                alert('Browser denied permission to send desktop notifications.');
+                alert('浏览器拒绝了发送桌面通知的权限。');
                 return false;
             }
             setCookie('domjudge_notify', 1);
-            sendNotification('DOMjudge notifications enabled.');
+            sendNotification('DOMjudge 通知已启用。');
             $("#notify_disable").removeClass('d-none');
             $("#notify_disable").show();
             $("#notify_enable").hide();
@@ -207,7 +207,7 @@ function updateClock()
     var curtime = Math.round((new Date().getTime() - clientOffset) / 1000);
 
     var fmt = "";
-    if ( timeleftelt.innerHTML=='start delayed' || timeleft.innerHTML == 'no contest' ) { // FIXME
+    if ( timeleftelt.innerHTML=='开始时间推迟' || timeleft.innerHTML == '无比赛' ) { // FIXME
         var left = 0;
         var what = timeleftelt.innerHTML;
     } else if (curtime >= starttime && curtime < endtime ) {
@@ -215,10 +215,10 @@ function updateClock()
         var what = "";
     } else if (curtime >= activatetime && curtime < starttime ) {
         var left = starttime - curtime;
-        var what = "time to start: ";
+        var what = "开始倒计时: ";
     } else {
         var left = 0;
-        var what = "contest over";
+        var what = "比赛已结束";
     }
 
     if ( left ) {

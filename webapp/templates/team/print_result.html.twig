@@ -1,6 +1,6 @@
 {% extends "team/base.html.twig" %}
 
-{% block title %}{{ parent() }} - Print{% endblock %}
+{% block title %}{{ parent() }} - 打印{% endblock %}
 
 {% block extrahead %}
     {{ parent() }}
@@ -9,19 +9,19 @@
 {% block content %}
 
     <div class="container pt-5">
-        <h1 class="text-center">Print source</h1>
+        <h1 class="text-center">打印源代码</h1>
 
         <pre class="output_text m-3">
 {{ output }}
 </pre>
 
         {% if success %}
-            <div class="alert alert-success">File has been printed</div>
+            <div class="alert alert-success">文件已打印</div>
         {% else %}
-            <div class="alert alert-danger">Error while printing. Contact staff.</div>
+            <div class="alert alert-danger">打印时出错。请联系工作人员。</div>
         {% endif %}
 
-        <a href="./" class="btn btn-secondary mt-3">Close</a>
+        <a href="./" class="btn btn-secondary mt-3">关闭</a>
     </div>
 
 {% endblock %}

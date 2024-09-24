@@ -12,10 +12,10 @@
                 <h1>
                     {{ status_code }} {{ status_text }}</h1>
                 <div class="error-details">
-                    Sorry, an error has occurred: {{ status_text }}.
+                    抱歉，这里发生了一些错误: {{ status_text }}.
                 </div>
                 <div class="error-details">
-                    Please contact a staff member for assistance.
+                    请联系工作人员寻求帮助。
                 </div>
                 {% if is_granted("ROLE_JURY") and exception.message is defined %}
                 <div class="error-details mt-4" style="text-align: left;">

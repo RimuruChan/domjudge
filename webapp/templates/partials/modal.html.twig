@@ -16,7 +16,7 @@
             <div class="modal-footer">
                 {% block extraButton %}{% endblock %}
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    {% block closeButtonText %}Close{% endblock %}
+                    {% block closeButtonText %}关闭{% endblock %}
                 </button>
                 {% if showModalSubmit|default(false) %}
                     <button type="button" class="btn {{ buttonClass|default('btn-danger') }}" data-url="{{ modalUrl }}">
