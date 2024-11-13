@@ -71,9 +71,9 @@ class SubmitProblemPasteType extends AbstractType
         ]);
 
         $builder->add('entry_point', TextType::class, [
-            'label' => 'Entry point',
+            'label' => '程序入口点',
             'required' => false,
-            'help' => 'The entry point for your code.',
+            'help' => '你的程序的入口点',
             'row_attr' => ['data-entry-point' => ''],
             'constraints' => [
                 new Callback(function ($value, ExecutionContextInterface $context) {
@@ -81,7 +81,6 @@ class SubmitProblemPasteType extends AbstractType
                     $form = $context->getRoot();
                     /** @var Language $language */
                     $language = $form->get('language')->getData();
-                    $langId = strtolower($language->getExtensions()[0]);
                     if ($language->getRequireEntryPoint() && empty($value)) {
                         $message = sprintf('需要 %s 但没有提供',
                                             $language->getEntryPointDescription() ?: '程序入口点');
