@@ -111,19 +111,7 @@ class SubmissionController extends BaseController
                         $language->getExtensions()[0]
                     );
                     $saveFileName = preg_replace('/[^a-zA-Z0-9_.-]/', '_', $saveFileName);
-
-                    if ($language->getRequireEntryPoint()) {
-                        $entryPoint = $formPaste->get('entry_point')->getData() ?: null;
-                        // Check for invalid characters in entry point name
-                        $invalidChars = '/[<>:"\/\\|?*]/';
-                        if (preg_match($invalidChars, $entryPoint)) {
-                            $this->addFlash('danger', '非法的程序入口名。程序入口名不得包含特殊字符');
-                            return $this->redirectToRoute('team_index');
-                        }
-                        $saveFileName = $entryPoint . '.' . $language->getExtensions()[0];
-                    } else {
-                        $entryPoint = $saveFileName;
-                    }
+                    $entryPoint = $formPaste->get('entry_point')->getData() ?: null;
 
                     $saveFilePath = $saveFileDir . DIRECTORY_SEPARATOR . $saveFileName;
                     file_put_contents($saveFilePath, $codeContent);
