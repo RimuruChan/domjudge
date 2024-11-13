@@ -75,11 +75,13 @@
     <thead>
     <tr class="scoreheader" data-static="{{ static }}">
         {% if enable_ranking %}
-            <th title="排名" scope="col" {% if medalsEnabled %}colspan="2"{% endif %}>排名</th>
+            <th title="排名" scope="col" {% if medalsEnabled %}colspan="2"{% endif %}>&nbsp;排名&nbsp;</th>
         {% endif %}
-        <th title="队伍" scope="col" colspan="{{ teamColspan }}">队伍</th>
+        <th title="队伍" scope="col" colspan="{{ teamColspan }}">&nbsp;队伍&nbsp;</th>
         {% if enable_ranking %}
-            <th title="# 通过 罚时" colspan="2" scope="col">通过 罚时</th>
+            <th title="# 通过" colspan="1" scope="col"
+                style="box-shadow: 0 0 0 0 silver inset, 0 2px 0 0 black; !important;">&nbsp;通过&nbsp;</th>
+            <th title="# 罚时" colspan="1" scope="col">&nbsp;罚时&nbsp;</th>
         {% endif %}
         {% if showTeamSubmissions or jury %}
             {% for problem in problems %}
@@ -576,9 +578,9 @@
 
     {% if showTeamSubmissions or jury %}
         {% if scoreboard.getRuntimeAsScoreTiebreaker() %}
-            {% set cellColors = {first: '最优解', correct: '通过', incorrect: '已尝试，未通过', pending: '已尝试，评测中', neutral: '未尝试'} %}
+            {% set cellColors = {first: '最优解', correct: '通过', incorrect: '已提交，未通过', pending: '已提交，评测中', neutral: '未提交'} %}
         {% else %}
-            {% set cellColors = {first: '首位通过', correct: '通过', incorrect: '已尝试，未通过', pending: '已尝试，评测中', neutral: '未尝试'} %}
+            {% set cellColors = {first: '首位通过', correct: '通过', incorrect: '已提交，未通过', pending: '已提交，评测中', neutral: '未提交'} %}
         {% endif %}
         <table id="cell_legend" class="d-none d-md-table scoreboard scorelegend {% if jury %}scoreboard_jury{% endif %}">
             <thead>
