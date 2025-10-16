@@ -1,9 +1,9 @@
 {% extends 'team/base.html.twig' %}
 
-{% block title %}查看解释 - {{ parent() }}{% endblock %}
+{% block title %}查看解释说明 - {{ parent() }}{% endblock %}
 
 {% block content %}
-    <h1 class="text-center mt-4">解释
+    <h1 class="text-center mt-4">解释说明
     {% if clarification.sender and clarification.sender.teamid == team.teamid %}请求{% endif%}</h1>
 
     {% include 'team/partials/clarification_content.html.twig' %}
@@ -11,7 +11,7 @@
     <div class="container clarificationform mt-3">
     <button class="btn btn-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#collapsereplyform"
             aria-expanded="false" aria-controls="collapsereplyform" id="clarification-reply-button">
-        <i class="fa fa-reply"></i> 回复此解释
+        <i class="fa fa-reply"></i> 回复此解释说明请求
     </button>
     </div>
 
